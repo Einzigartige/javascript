@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>JavaScript ARRAYS – Full Demo</title>
+    <style>
+        :root {
+            --primary: #0078ff;
+            --muted: #666;
+            --card-bg: #fff;
+            --page-bg: #f4f4f4;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--page-bg);
+            margin: 0;
+            padding: 20px;
+            color: #222;
+            line-height: 1.5;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 8px 0 20px;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin: 18px 0;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Social */
+        .social-section {
+            text-align: center;
+        }
+
+        .social-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 13px;
+            transition: transform .15s ease, color .15s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-4px);
+            color: var(--primary);
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 6px;
+        }
+
+        /* small UI */
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select,
+        textarea {
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            width: 150px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 64px;
+        }
+
+        button {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button.secondary {
+            background: #5a5a5a;
+        }
+
+        pre.output {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            padding: 12px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            max-height: 420px;
+            overflow: auto;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        /* Events demo box */
+        .box {
+            width: 240px;
+            height: 84px;
+            border-radius: 8px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            user-select: none;
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        /* layout helpers */
+        .row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .explain {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .method {
+            border: 1px dashed #e6e6e6;
+            padding: 10px;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .kbd {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>JavaScript ARRAYS  – Full Demo</h1>
+
+        <!-- ⭐ SOCIAL MEDIA LINKS -->
+        <div class="card social-section">
+            <div class="social-title">Follow Us on Social Media</div>
+
+            <div class="social-icons">
+
+                <a href="http://einzigartige.in/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/internetarchive.svg" alt="Website">
+                    Website
+                </a>
+
+                <a href="https://www.youtube.com/@einzigartige_/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
+                    YouTube
+                </a>
+
+                <a href="https://www.linkedin.com/company/einzigartige/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
+                    LinkedIn
+                </a>
+
+                <a href="https://www.facebook.com/einzigartige" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook">
+                    Facebook
+                </a>
+
+                <a href="https://www.instagram.com/einzigartige.it/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
+                    Instagram
+                </a>
+
+                <a href="https://twitter.com/einzigartigetec" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="Twitter">
+                    Twitter
+                </a>
+
+                <a href="https://einzigartige.medium.com/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" alt="Medium">
+                    Medium
+                </a>
+            </div>
+        </div>
+
+        <!-- ARRAYS INTERACTIVE CARD -->
+        <div class="card">
+            <div class="section-title">
+                <h2>JavaScript Arrays — Interactive Playground</h2>
+                <div class="small muted">Key: Ordered, zero-indexed, dynamic, heterogeneous, typeof -> "object"</div>
+            </div>
+
+            <p class="explain">
+                This interactive playground demonstrates arrays in JavaScript. Use the controls to create arrays,
+                inspect by index, add/remove elements, and run common array methods (map, filter, reduce, etc.).
+            </p>
+
+            <div class="row">
+                <!-- left column: controls -->
+                <div class="col">
+                    <div style="margin-bottom:8px;">
+                        <strong>Current array (variable: <span class="kbd">arr</span>)</strong>
+                    </div>
+
+                    <div class="controls" style="margin-bottom:10px;">
+                        <button id="btnCreate">Create default array</button>
+                        <button id="btnHetero" class="secondary">Create heterogeneous</button>
+                        <button id="btnClear" class="secondary">Clear</button>
+                    </div>
+
+                    <div style="margin-top:12px;">
+                        <label class="small">Add value (push):
+                            <input id="inputPush" type="text" placeholder='e.g. 42 or "hello" or [1,2]'>
+                        </label>
+                        <button id="btnPush">Push</button>
+                    </div>
+
+                    <div style="margin-top:12px;">
+                        <div class="controls">
+                            <label class="small">Index:
+                                <input id="inputIndex" type="number" value="0">
+                            </label>
+
+                            <label class="small">Value:
+                                <input id="inputSetValue" type="text" placeholder='value to set'>
+                            </label>
+
+                            <button id="btnGetIndex">Get</button>
+                            <button id="btnSetIndex">Set</button>
+                        </div>
+                        <div class="small muted" style="margin-top:6px;">Access by zero-based index (arr[0] is first item).</div>
+                    </div>
+
+                    <div style="margin-top:12px;">
+                        <div class="controls">
+                            <button id="btnPop">Pop</button>
+                            <button id="btnShift">Shift</button>
+                            <button id="btnUnshift">Unshift</button>
+                            <button id="btnSplice">Splice</button>
+                        </div>
+                        <div class="small muted" style="margin-top:6px;">
+                            <span class="kbd">pop()</span> removes from end, <span class="kbd">shift()</span> from start,
+                            <span class="kbd">unshift(v)</span> adds at start, <span class="kbd">splice(start,deleteCount,items...)</span>
+                            edits array.
+                        </div>
+                    </div>
+
+                    <hr style="margin:12px 0;">
+
+                    <div>
+                        <strong>Methods / Helpers</strong>
+                        <div class="method-grid">
+                            <div class="method">
+                                <div class="small">map()</div>
+                                <div style="margin-top:8px;">
+                                    <button id="btnMap">Map (double numbers)</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">filter()</div>
+                                <div style="margin-top:8px;">
+                                    <input id="inputFilterVal" type="text" placeholder="e.g. 10">
+                                    <button id="btnFilter">Filter (&gt; value)</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">reduce()</div>
+                                <div style="margin-top:8px;">
+                                    <button id="btnReduce">Reduce (sum if numbers)</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">find()</div>
+                                <div style="margin-top:8px;">
+                                    <input id="inputFindVal" type="text" placeholder="e.g. hello">
+                                    <button id="btnFind">Find</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">includes() / indexOf()</div>
+                                <div style="margin-top:8px;">
+                                    <input id="inputIncludesVal" type="text" placeholder="value">
+                                    <button id="btnIncludes">Includes?</button>
+                                    <button id="btnIndexOf">IndexOf</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">slice() / splice()</div>
+                                <div style="margin-top:8px;">
+                                    <input id="inputSliceStart" type="number" placeholder="start" style="width:70px;">
+                                    <input id="inputSliceEnd" type="number" placeholder="end" style="width:70px;">
+                                    <button id="btnSlice">Slice</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">sort() / reverse()</div>
+                                <div style="margin-top:8px;">
+                                    <button id="btnSort">Sort</button>
+                                    <button id="btnReverse">Reverse</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">join()</div>
+                                <div style="margin-top:8px;">
+                                    <input id="inputJoinSep" type="text" placeholder=",">
+                                    <button id="btnJoin">Join</button>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <div class="small">utilities</div>
+                                <div style="margin-top:8px;">
+                                    <button id="btnTypeOf">typeof arr</button>
+                                    <button id="btnIsArray">Array.isArray</button>
+                                    <button id="btnLength">length</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- right column: output / explanation -->
+                <div class="col">
+                    <div>
+                        <strong>Output / Inspector</strong>
+                        <div class="small muted">Shows the array contents with indexes and types for clarity.</div>
+                    </div>
+
+                    <pre id="out" class="output"></pre>
+
+                    <div style="margin-top:12px;">
+                        <strong>Quick Examples</strong>
+                        <div class="small muted">
+                            <ul>
+                                <li>Ordered & zero-indexed: <span class="kbd">arr[0]</span> is first item.</li>
+                                <li>Dynamic: use <span class="kbd">push()</span>, <span class="kbd">pop()</span>, <span class="kbd">splice()</span>.</li>
+                                <li>Heterogeneous example contains mix: <span class="kbd">["text", 1, true, {a:1}]</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align:center; color:var(--muted); font-size:13px; margin:18px 0 0;">
+            Built for demo • Supports ARRAYS • Copy / reuse freely
+            <br><br>
+            © Copyright 2019 - <span id="year"></span>
+            <a href="https://einzigartige.in/" target="_blank" style="color:inherit; text-decoration:none;">
+                Einzigartige - Web & App Development
+            </a>
+            | All Rights Reserved.
+        </footer>
+
+    </div>
+
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+        /* =========================
+           JAVASCRIPT ARRAYS — Interactive
+           ========================= */
+
+        // state
+        let arr = [];
+
+        // helpers
+        const out = document.getElementById('out');
+
+        function parseInputValue(raw) {
+            // try to interpret as number, boolean, null, JSON array/object; otherwise string (trim quotes)
+            if (raw === null || raw === undefined) return raw;
+            const s = String(raw).trim();
+
+            if (s === '') return '';
+
+            // booleans
+            if (s.toLowerCase() === 'true') return true;
+            if (s.toLowerCase() === 'false') return false;
+            if (s.toLowerCase() === 'null') return null;
+            if (s.toLowerCase() === 'undefined') return undefined;
+
+            // number
+            if (!Number.isNaN(Number(s)) && s !== '') {
+                return Number(s);
+            }
+
+            // JSON object or array
+            if ((s.startsWith('{') && s.endsWith('}')) || (s.startsWith('[') && s.endsWith(']'))) {
+                try {
+                    return JSON.parse(s);
+                } catch (e) {
+                    // fallthrough to string
+                }
+            }
+
+            // string with quotes — remove outer quotes if present
+            if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+                return s.slice(1, -1);
+            }
+
+            return s;
+        }
+
+        function showArrayInfo() {
+            out.textContent = ''; // clear
+            out.appendChild(document.createTextNode('arr = ' + formatArray(arr) + '\n\n'));
+            out.appendChild(document.createTextNode('Visual inspector (index : (type) value)\n'));
+            out.appendChild(document.createTextNode('---------------------------------\n'));
+            if (arr.length === 0) {
+                out.appendChild(document.createTextNode('[empty array]\n'));
+            } else {
+                arr.forEach((v, i) => {
+                    out.appendChild(document.createTextNode(`${i} : (${typeOfValue(v)}) ${JSON.stringify(v)}\n`));
+                });
+            }
+            out.appendChild(document.createTextNode('\nMethods quick info:\n'));
+            out.appendChild(document.createTextNode('push/pop/shift/unshift/splice/slice/map/filter/reduce/find/includes/indexOf/sort/reverse/join\n'));
+            out.scrollTop = out.scrollHeight;
+        }
+
+        function formatArray(a) {
+            try {
+                return JSON.stringify(a);
+            } catch (e) {
+                return String(a);
+            }
+        }
+
+        function typeOfValue(v) {
+            if (Array.isArray(v)) return 'array';
+            if (v === null) return 'null';
+            return typeof v;
+        }
+
+        function appendLog(line) {
+            out.appendChild(document.createTextNode(line + '\n'));
+            out.scrollTop = out.scrollHeight;
+        }
+
+        // initial show
+        showArrayInfo();
+
+        // wire up controls
+        document.getElementById('btnCreate').addEventListener('click', () => {
+            arr = [10, 20, 30, 40];
+            appendLog('Created default array: [10,20,30,40]');
+            showArrayInfo();
+        });
+
+        document.getElementById('btnHetero').addEventListener('click', () => {
+            arr = ['hello', 42, true, { a: 1 }, [1, 2, 3], null];
+            appendLog('Created heterogeneous array: ["hello", 42, true, {a:1}, [1,2,3], null]');
+            showArrayInfo();
+        });
+
+        document.getElementById('btnClear').addEventListener('click', () => {
+            arr = [];
+            appendLog('Cleared array.');
+            showArrayInfo();
+        });
+
+        document.getElementById('btnPush').addEventListener('click', () => {
+            const raw = document.getElementById('inputPush').value;
+            const v = parseInputValue(raw);
+            arr.push(v);
+            appendLog(`push(${JSON.stringify(v)})`);
+            showArrayInfo();
+        });
+
+        document.getElementById('btnPop').addEventListener('click', () => {
+            const popped = arr.pop();
+            appendLog(`pop() -> ${JSON.stringify(popped)}`);
+            showArrayInfo();
+        });
+
+        document.getElementById('btnShift').addEventListener('click', () => {
+            const shifted = arr.shift();
+            appendLog(`shift() -> ${JSON.stringify(shifted)}`);
+            showArrayInfo();
+        });
+
+        document.getElementById('btnUnshift').addEventListener('click', () => {
+            const raw = document.getElementById('inputPush').value;
+            const v = parseInputValue(raw);
+            arr.unshift(v);
+            appendLog(`unshift(${JSON.stringify(v)})`);
+            showArrayInfo();
+        });
+
+        document.getElementById('btnGetIndex').addEventListener('click', () => {
+            const idx = Number(document.getElementById('inputIndex').value);
+            if (!Number.isFinite(idx) || idx < 0) {
+                appendLog('Index must be a non-negative integer.');
+                return;
+            }
+            appendLog(`arr[${idx}] -> ${JSON.stringify(arr[idx])}`);
+            showArrayInfo();
+        });
+
+        document.getElementById('btnSetIndex').addEventListener('click', () => {
+            const idx = Number(document.getElementById('inputIndex').value);
+            if (!Number.isFinite(idx) || idx < 0) {
+                appendLog('Index must be a non-negative integer.');
+                return;
+            }
+            const raw = document.getElementById('inputSetValue').value;
+            const v = parseInputValue(raw);
+            arr[idx] = v; // array can grow dynamically if idx beyond length
+            appendLog(`arr[${idx}] = ${JSON.stringify(v)}`);
+            showArrayInfo();
+        });
+
+        // Splice: for demo, prompt for start, deleteCount, optional value via prompt (simple)
+        document.getElementById('btnSplice').addEventListener('click', () => {
+            const start = parseInt(prompt('Enter splice start index (integer):', '0'), 10);
+            if (!Number.isFinite(start)) {
+                appendLog('Invalid start.');
+                return;
+            }
+            const del = parseInt(prompt('Enter deleteCount (integer):', '1'), 10);
+            if (!Number.isFinite(del)) {
+                appendLog('Invalid deleteCount.');
+                return;
+            }
+            const itemRaw = prompt('Optional: value to insert (leave empty for none):', '');
+            let inserted = [];
+            if (itemRaw !== null && itemRaw !== '') {
+                const v = parseInputValue(itemRaw);
+                arr.splice(start, del, v);
+                inserted = [v];
+                appendLog(`splice(${start}, ${del}, ${JSON.stringify(v)})`);
+            } else {
+                const removed = arr.splice(start, del);
+                appendLog(`splice(${start}, ${del}) removed -> ${JSON.stringify(removed)}`);
+            }
+            showArrayInfo();
+        });
+
+        // map
+        document.getElementById('btnMap').addEventListener('click', () => {
+            const mapped = arr.map(x => (typeof x === 'number' ? x * 2 : x));
+            appendLog('map(...) -> doubled numbers, others unchanged');
+            appendLog('result: ' + JSON.stringify(mapped));
+            showArrayInfo();
+        });
+
+        // filter
+        document.getElementById('btnFilter').addEventListener('click', () => {
+            const raw = document.getElementById('inputFilterVal').value;
+            const v = parseInputValue(raw);
+            if (typeof v === 'number') {
+                const filtered = arr.filter(x => (typeof x === 'number' && x > v));
+                appendLog(`filter(x > ${v}) -> ${JSON.stringify(filtered)}`);
+            } else {
+                const filtered = arr.filter(x => String(x).includes(String(v)));
+                appendLog(`filter(String includes "${String(v)}") -> ${JSON.stringify(filtered)}`);
+            }
+            showArrayInfo();
+        });
+
+        // reduce (sum if numbers)
+        document.getElementById('btnReduce').addEventListener('click', () => {
+            const numbers = arr.filter(x => typeof x === 'number');
+            if (numbers.length === 0) {
+                appendLog('reduce: no numeric elements to sum.');
+            } else {
+                const sum = numbers.reduce((a, b) => a + b, 0);
+                appendLog(`reduce(sum) on numeric elements -> ${sum}`);
+            }
+            showArrayInfo();
+        });
+
+        // find
+        document.getElementById('btnFind').addEventListener('click', () => {
+            const raw = document.getElementById('inputFindVal').value;
+            const v = parseInputValue(raw);
+            const found = arr.find(x => {
+                if (typeof v === 'number') return x === v;
+                return String(x) === String(v);
+            });
+            appendLog(`find(${JSON.stringify(v)}) -> ${JSON.stringify(found)}`);
+            showArrayInfo();
+        });
+
+        // includes
+        document.getElementById('btnIncludes').addEventListener('click', () => {
+            const raw = document.getElementById('inputIncludesVal').value;
+            const v = parseInputValue(raw);
+            const inc = arr.includes(v);
+            appendLog(`includes(${JSON.stringify(v)}) -> ${inc}`);
+            showArrayInfo();
+        });
+
+        // indexOf
+        document.getElementById('btnIndexOf').addEventListener('click', () => {
+            const raw = document.getElementById('inputIncludesVal').value;
+            const v = parseInputValue(raw);
+            const idx = arr.indexOf(v);
+            appendLog(`indexOf(${JSON.stringify(v)}) -> ${idx}`);
+            showArrayInfo();
+        });
+
+        // slice
+        document.getElementById('btnSlice').addEventListener('click', () => {
+            const start = Number(document.getElementById('inputSliceStart').value);
+            const end = Number(document.getElementById('inputSliceEnd').value);
+            const sliced = arr.slice(Number.isFinite(start) ? start : 0, Number.isFinite(end) ? end : undefined);
+            appendLog(`slice(${start}, ${end}) -> ${JSON.stringify(sliced)}`);
+            showArrayInfo();
+        });
+
+        // sort
+        document.getElementById('btnSort').addEventListener('click', () => {
+            // note: default sort coerces to string
+            try {
+                // if all numbers, use numeric sort
+                if (arr.every(x => typeof x === 'number')) {
+                    arr.sort((a, b) => a - b);
+                    appendLog('Sorted numerically.');
+                } else {
+                    arr.sort();
+                    appendLog('Sorted (string coercion).');
+                }
+            } catch (e) {
+                appendLog('Sort error: ' + e.message);
+            }
+            showArrayInfo();
+        });
+
+        // reverse
+        document.getElementById('btnReverse').addEventListener('click', () => {
+            arr.reverse();
+            appendLog('Reversed array.');
+            showArrayInfo();
+        });
+
+        // join
+        document.getElementById('btnJoin').addEventListener('click', () => {
+            const sep = document.getElementById('inputJoinSep').value;
+            appendLog(`join("${sep}") -> ${arr.join(sep)}`);
+            showArrayInfo();
+        });
+
+        // typeof arr
+        document.getElementById('btnTypeOf').addEventListener('click', () => {
+            appendLog('typeof arr -> ' + typeof arr + '  (arrays are objects)');
+            showArrayInfo();
+        });
+
+        // Array.isArray
+        document.getElementById('btnIsArray').addEventListener('click', () => {
+            appendLog('Array.isArray(arr) -> ' + Array.isArray(arr));
+            showArrayInfo();
+        });
+
+        // length
+        document.getElementById('btnLength').addEventListener('click', () => {
+            appendLog('arr.length -> ' + arr.length);
+            showArrayInfo();
+        });
+
+        // utility: when page loads create a default arr
+        (function init() {
+            arr = [1, 2, 3];
+            appendLog('Initialized arr with [1,2,3]');
+            showArrayInfo();
+        })();
+    </script>
+</body>
+
+</html>
