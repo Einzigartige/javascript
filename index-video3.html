@@ -1,361 +1,278 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>JavaScript Events – Full Demo</title>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>JavaScript Loops & Events – Full Demo</title>
     <style>
+        :root {
+            --primary: #0078ff;
+            --muted: #666;
+            --card-bg: #fff;
+            --page-bg: #f4f4f4;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--page-bg);
             margin: 0;
             padding: 20px;
-            line-height: 1.6;
+            color: #222;
+            line-height: 1.5;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 30px;
+            margin: 8px 0 20px;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
         }
 
         .card {
-            background: white;
-            padding: 20px;
-            margin: 20px 0;
+            background: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            padding: 18px;
+            margin: 18px 0;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
         }
 
-        .box {
-            width: 250px;
-            height: 90px;
-            text-align: center;
-            padding-top: 30px;
-            background: #e8e8e8;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        input,
-        select {
-            padding: 10px;
-            width: 250px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            background: #0078ff;
-            color: white;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* SOCIAL LINKS STYLES */
+        /* Social */
         .social-section {
             text-align: center;
-            padding: 20px;
         }
 
         .social-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 18px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .social-icons a {
             text-decoration: none;
+            color: #111;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #000;
-            transition: 0.3s ease;
+            font-size: 13px;
+            transition: transform .15s ease, color .15s ease;
         }
 
         .social-icons a:hover {
-            transform: scale(1.1);
-            color: #0078ff;
+            transform: translateY(-4px);
+            color: var(--primary);
         }
 
         .social-icons img {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 6px;
         }
 
-        /* Do/While UI */
-        .dw-controls {
+        /* small UI */
+        .controls {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
             align-items: center;
+            flex-wrap: wrap;
         }
 
-        .dw-controls input {
-            width: 120px;
+        input[type="number"],
+        input[type="text"],
+        select {
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            width: 150px;
         }
 
-        .dw-output {
+        button {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button.secondary {
+            background: #5a5a5a;
+        }
+
+        pre.output {
             background: #fafafa;
-            border: 1px solid #ddd;
+            border: 1px solid #e6e6e6;
             padding: 12px;
             border-radius: 6px;
-            max-height: 220px;
-            overflow: auto;
-            margin-top: 10px;
-            font-family: monospace;
             white-space: pre-wrap;
-            font-size: 14px;
+            max-height: 240px;
+            overflow: auto;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        /* Events demo box */
+        .box {
+            width: 240px;
+            height: 84px;
+            border-radius: 8px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            user-select: none;
         }
 
         .small {
             font-size: 13px;
-            color: #555;
+            color: var(--muted);
         }
 
         .muted {
-            color: #666;
+            color: var(--muted);
+        }
+
+        /* layout helpers */
+        .row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 260px;
         }
     </style>
 </head>
 
 <body>
+    <div class="container">
+        <h1>JavaScript Loops & Events – Full Demo</h1>
 
-    <h1>JavaScript Events – Complete Demo</h1>
+        <!-- ⭐ SOCIAL MEDIA LINKS -->
+        <div class="card social-section">
+            <div class="social-title">Follow Us on Social Media</div>
 
-    <!-- ⭐ SOCIAL MEDIA LINKS -->
-    <div class="card social-section">
-        <div class="social-title">Follow Us on Social Media</div>
+            <div class="social-icons">
 
-        <div class="social-icons">
+                <a href="http://einzigartige.in/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/internetarchive.svg" alt="Website">
+                    Website
+                </a>
 
-            <a href="http://einzigartige.in/" target="_blank">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/internetarchive.svg" alt="Website">
-                Website
-            </a>
+                <a href="https://www.youtube.com/@einzigartige_/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
+                    YouTube
+                </a>
 
-            <a href="https://www.youtube.com/@einzigartige_/" target="_blank">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
-                YouTube
-            </a>
+                <a href="https://www.linkedin.com/company/einzigartige/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
+                    LinkedIn
+                </a>
 
-            <a href="https://www.linkedin.com/company/einzigartige/" target="_blank">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
-                LinkedIn
-            </a>
+                <a href="https://www.facebook.com/einzigartige" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook">
+                    Facebook
+                </a>
 
-            <a href="https://www.facebook.com/einzigartige" target="_blank">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook">
-                Facebook
-            </a>
+                <a href="https://www.instagram.com/einzigartige.it/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
+                    Instagram
+                </a>
 
-            <a href="https://www.instagram.com/einzigartige.it/" target="_blank">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram">
-                Instagram
-            </a>
+                <a href="https://twitter.com/einzigartigetec" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="Twitter">
+                    Twitter
+                </a>
 
-            <a href="https://twitter.com/einzigartigetec" target="_blank">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="Twitter">
-                Twitter
-            </a>
-
-            <a href="https://einzigartige.medium.com/" target="_blank">
-                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" alt="Medium">
-                Medium
-            </a>
-        </div>
-    </div>
-
-    <!-- YOUR ORIGINAL BUTTON EVENT -->
-    <div class="card">
-        <h2>Click Event (Your Original Example)</h2>
-        <button onclick="myfunction()">My Button</button>
-        <p id="mydiv">Hello World!</p>
-    </div>
-
-    <!-- CLICK EVENTS -->
-    <div class="card">
-        <h2>Click Events</h2>
-        <button id="clickBtn">Click Me</button>
-        <button id="dblClickBtn">Double Click Me</button>
-        <p id="clickText"></p>
-    </div>
-
-    <!-- MOUSE EVENTS -->
-    <div class="card">
-        <h2>Mouse Events</h2>
-        <div id="mouseBox" class="box">Hover or Click</div>
-        <p id="mouseInfo"></p>
-    </div>
-
-    <!-- KEYBOARD EVENTS -->
-    <div class="card">
-        <h2>Keyboard Events</h2>
-        <input type="text" id="keyInput" placeholder="Type something...">
-        <p id="keyOutput"></p>
-    </div>
-
-    <!-- FORM EVENTS -->
-    <div class="card">
-        <h2>Form Events</h2>
-        <form id="myForm">
-            <input type="text" id="email" placeholder="Enter Email"><br><br>
-            <input type="text" id="focusInput" placeholder="Focus / Blur Example"><br><br>
-
-            <select id="selectMenu">
-                <option value="">Select Option</option>
-                <option value="Apple">Apple</option>
-                <option value="Banana">Banana</option>
-            </select><br><br>
-
-            <button type="submit">Submit Form</button>
-        </form>
-        <p id="formMsg"></p>
-    </div>
-
-    <!-- WINDOW EVENTS -->
-    <div class="card">
-        <h2>Window Events</h2>
-        <p id="windowEvents"></p>
-    </div>
-
-    <!-- DO / WHILE LOOP (STEP-BY-STEP) -->
-    <div class="card">
-        <h2>Do / While Loop — Step-by-Step</h2>
-
-        <p class="small">
-            A <code>do...while</code> loop executes the loop body <strong>at least once</strong> then checks the condition.
-            Use the controls to step through iterations or run automatically.
-        </p>
-
-        <div class="dw-controls">
-            <label class="small muted">Start:
-                <input id="dwStart" type="number" value="1">
-            </label>
-
-            <label class="small muted">Limit (condition is <code>i &lt;= limit</code>):
-                <input id="dwLimit" type="number" value="5">
-            </label>
-
-            <label class="small muted">Increment:
-                <input id="dwInc" type="number" value="1">
-            </label>
-
-            <button id="dwStepBtn">Step</button>
-            <button id="dwRunBtn">Run</button>
-            <button id="dwResetBtn">Reset</button>
-            <button id="dwClearBtn">Clear Output</button>
+                <a href="https://einzigartige.medium.com/" target="_blank" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" alt="Medium">
+                    Medium
+                </a>
+            </div>
         </div>
 
-        <div class="dw-output" id="dwOutput" aria-live="polite"></div>
+        <!-- ROW: DO-WHILE + Loop Demos -->
+        <div class="row">
+            <div class="col card">
+                <h2>Do / While Loop - Step-by-Step</h2>
+                <p class="small">A <code>do...while</code> loop executes the body at least once, then evaluates the
+                    condition. Use controls to step or auto-run.</p>
 
-        <p class="small muted">Output shows: variable before body, body action, variable after body, condition result.</p>
+                <div class="controls" style="margin:8px 0 6px;">
+                    <label class="small muted">Start:
+                        <input id="dwStart" type="number" value="1">
+                    </label>
+
+                    <label class="small muted">Limit (<code>i &lt;= limit</code>):
+                        <input id="dwLimit" type="number" value="5">
+                    </label>
+
+                    <label class="small muted">Increment:
+                        <input id="dwInc" type="number" value="1">
+                    </label>
+
+                    <button id="dwStepBtn">Step</button>
+                    <button id="dwRunBtn">Run</button>
+                    <button id="dwResetBtn" class="secondary">Reset</button>
+                    <button id="dwClearBtn" class="secondary">Clear</button>
+                </div>
+
+                <pre id="dwOutput" class="output" aria-live="polite"></pre>
+                <p class="small muted">Output shows: variable before body, body action, variable after body, condition
+                    result.</p>
+            </div>
+
+            <div class="col card">
+                <h2>Loop Quick Demos</h2>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+                    <button onclick="runDoWhileDemo()">Run Simple do...while</button>
+                    <button onclick="runWhile()">Run while</button>
+                    <button onclick="runFor()">Run for</button>
+                    <button onclick="runForIn()">Run for...in</button>
+                    <button onclick="runForOf()">Run for...of</button>
+                </div>
+
+                <pre id="loopsOutput" class="output"></pre>
+                <p class="small muted">The "Quick Demos" run small examples and append to the output area.</p>
+            </div>
+        </div>
+
+        <footer style="text-align:center; color:var(--muted); font-size:13px; margin:18px 0 0;">
+            Built for demo • Supports loops & events • Copy / reuse freely
+            <br><br>
+            © Copyright 2019 - <span id="year"></span>
+            <a href="https://einzigartige.in/" target="_blank" style="color:inherit; text-decoration:none;">
+                Einzigartige - Web & App Development
+            </a>
+            | All Rights Reserved.
+        </footer>
+
     </div>
 
-    <div style="height:800px;"></div>
 
     <script>
-        /* ================================
-           ORIGINAL FUNCTION
-        ================================ */
-        function myfunction() {
-            var d = document.getElementById("mydiv");
-            d.innerHTML = "The button was clicked!";
-            d.style.color = "red";
-        }
-
-        /* CLICK EVENTS */
-        document.getElementById("clickBtn").addEventListener("click", () => {
-            document.getElementById("clickText").innerHTML = "Single Click detected!";
-        });
-
-        document.getElementById("dblClickBtn").addEventListener("dblclick", () => {
-            document.getElementById("clickText").innerHTML = "Double Click detected!";
-        });
-
-        /* MOUSE EVENTS */
-        const mouseBox = document.getElementById("mouseBox");
-        const mouseInfo = document.getElementById("mouseInfo");
-
-        mouseBox.addEventListener("mouseover", () => {
-            mouseBox.style.background = "#d4ffd4";
-            mouseInfo.innerHTML = "Mouse Over";
-        });
-
-        mouseBox.addEventListener("mouseout", () => {
-            mouseBox.style.background = "#e8e8e8";
-            mouseInfo.innerHTML = "Mouse Out";
-        });
-
-        mouseBox.addEventListener("mousedown", () => {
-            mouseInfo.innerHTML = "Mouse Down";
-        });
-
-        mouseBox.addEventListener("mouseup", () => {
-            mouseInfo.innerHTML = "Mouse Up";
-        });
-
-        /* KEYBOARD EVENTS */
-        document.getElementById("keyInput").addEventListener("keydown", function () {
-            document.getElementById("keyOutput").innerHTML = "Key Down: " + this.value;
-        });
-
-        document.getElementById("keyInput").addEventListener("keyup", function () {
-            document.getElementById("keyOutput").innerHTML = "Key Up: " + this.value;
-        });
-
-        document.getElementById("keyInput").addEventListener("input", function () {
-            document.getElementById("keyOutput").innerHTML = "Input Event: " + this.value;
-        });
-
-        /* FORM EVENTS */
-        document.getElementById("myForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-            document.getElementById("formMsg").innerHTML = "Form submitted!";
-        });
-
-        document.getElementById("email").addEventListener("change", function () {
-            document.getElementById("formMsg").innerHTML = "Email changed!";
-        });
-
-        document.getElementById("focusInput").addEventListener("focus", function () {
-            this.style.background = "#d9ecff";
-        });
-
-        document.getElementById("focusInput").addEventListener("blur", function () {
-            this.style.background = "white";
-        });
-
-        document.getElementById("selectMenu").addEventListener("change", function () {
-            document.getElementById("formMsg").innerHTML = "Selected: " + this.value;
-        });
-
-        /* WINDOW EVENTS */
-        window.addEventListener("load", () => {
-            document.getElementById("windowEvents").innerHTML += "Page Loaded<br>";
-        });
-
-        window.addEventListener("resize", () => {
-            document.getElementById("windowEvents").innerHTML += "Window Resized<br>";
-        });
-
-        window.addEventListener("scroll", () => {
-            document.getElementById("windowEvents").innerHTML += "Page Scrolled<br>";
-        });
-
-        /* ================================
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+        /* =========================
            DO / WHILE — Step-by-step logic
-           ================================ */
-
+           (interactive UI)
+           ========================= */
         (function () {
             const startInput = document.getElementById('dwStart');
             const limitInput = document.getElementById('dwLimit');
@@ -376,7 +293,6 @@
                 initialized: false
             };
 
-            // initialize state from inputs
             function initState() {
                 const s = parseInt(startInput.value, 10);
                 const l = parseInt(limitInput.value, 10);
@@ -390,13 +306,11 @@
                 state.initialized = true;
             }
 
-            // Append a line to output
             function appendLine(line) {
                 out.textContent += line + '\n';
                 out.scrollTop = out.scrollHeight;
             }
 
-            // Clear and initialize output with explanation
             function resetOutput() {
                 out.textContent = '';
                 appendLine('do {');
@@ -407,62 +321,41 @@
                 appendLine('-----------------------------');
             }
 
-            // Perform one do/while iteration step (as one atomic step includes body then condition evaluation)
             function stepOnce() {
                 if (!state.initialized) initState();
 
-                // Save value before executing body
                 const before = state.i;
 
-                // Execute body (for demo: show a message and increment)
                 appendLine(`Step ${state.stepCount + 1}:`);
                 appendLine(`  before body -> i = ${before}`);
 
-                // Body action (you can customize this)
+                // Body action (demo)
                 appendLine(`  body: console.log("Processing i =", ${before})`);
-                // Simulate body effect: increment i
+
+                // Apply body effect: increment
                 state.i = state.i + state.inc;
                 appendLine(`  after body -> i = ${state.i}`);
 
-                // Condition check: (i <= limit) — IMPORTANT: this matches the common do/while pattern,
-                // note that condition uses the updated value (post-body) in this demo
-                const conditionResult = (before /* original semantics often check after body based on current variables */
-                    , (before <= state.limit ? (/* if we intended check before increment use different var */ true) : false));
-
-                // However to demonstrate true do/while semantics exactly as in JS:
-                // In JS: do { body } while (condition);
-                // The condition is evaluated after body, using current variable values.
+                // Evaluate condition after body (JS semantics)
                 const condEval = (state.i <= state.limit);
                 appendLine(`  condition -> (i <= limit) => (${state.i} <= ${state.limit}) is ${condEval}`);
                 appendLine(`  loop ${condEval ? 'will continue' : 'will stop'}`);
                 appendLine('-----------------------------');
 
                 state.stepCount += 1;
-
                 return condEval;
             }
 
-            // NOTE: The above stepOnce performs body then checks condition using updated state.i.
-            // This matches the JS do/while behavior.
-
-            // Step button handler
             stepBtn.addEventListener('click', function () {
-                if (state.running) return; // ignore while auto-running
+                if (state.running) return;
                 if (!state.initialized) initState();
-                // If this is the first step after reset we must ensure body executes at least once.
                 const shouldContinue = stepOnce();
-
-                // If loop should continue, nothing else required until next Step or Run
-                // If it should stop, we disable Step (or show finished)
-                if (!shouldContinue) {
-                    appendLine('Loop finished (manual).');
-                }
+                if (!shouldContinue) appendLine('Loop finished (manual).');
             });
 
-            // Run automatically (animated)
             runBtn.addEventListener('click', function () {
                 if (state.running) {
-                    // If already running, clicking toggles stop
+                    // stop
                     state.running = false;
                     if (state.autoInterval) {
                         clearInterval(state.autoInterval);
@@ -478,12 +371,9 @@
                 state.running = true;
                 runBtn.textContent = 'Stop';
 
-                // Start with first iteration immediately then set interval for subsequent
-                // We use an interval to animate; stepOnce returns whether to continue
                 function runStep() {
                     const cont = stepOnce();
                     if (!cont || !state.running) {
-                        // stop
                         state.running = false;
                         if (state.autoInterval) {
                             clearInterval(state.autoInterval);
@@ -494,16 +384,14 @@
                     }
                 }
 
-                // run first step now (so user sees immediate feedback)
+                // run first step immediately
                 runStep();
 
-                // if still running, schedule more steps
                 if (state.running) {
-                    state.autoInterval = setInterval(runStep, 600); // 600ms between steps
+                    state.autoInterval = setInterval(runStep, 600);
                 }
             });
 
-            // Reset button: reinitialize to input values and clear output
             resetBtn.addEventListener('click', function () {
                 if (state.autoInterval) {
                     clearInterval(state.autoInterval);
@@ -514,20 +402,75 @@
                 initState();
                 resetOutput();
                 appendLine('State reset. Click Step or Run to start again.');
-                document.getElementById('dwStepBtn').disabled = false;
-                document.getElementById('dwRunBtn').textContent = 'Run';
+                runBtn.textContent = 'Run';
             });
 
             clearBtn.addEventListener('click', function () {
                 out.textContent = '';
             });
 
-            // initialize display once when page loads
+            // initialize display
             initState();
             resetOutput();
         })();
-    </script>
 
+        /* =========================
+           Quick loop demos appended to loopsOutput
+           ========================= */
+
+        function appendToLoopsOutput(text, clear = false) {
+            const out = document.getElementById('loopsOutput');
+            if (clear) out.textContent = '';
+            out.textContent += text + '\n';
+            out.scrollTop = out.scrollHeight;
+        }
+
+        function runDoWhileDemo() {
+            let i = 1;
+            let result = 'Simple do...while demo:\n';
+            do {
+                result += `  do iteration i = ${i}\n`;
+                i++;
+            } while (i <= 3);
+            appendToLoopsOutput(result);
+        }
+
+        function runWhile() {
+            let i = 1;
+            let result = 'While loop demo:\n';
+            while (i <= 5) {
+                result += `  while i = ${i}\n`;
+                i++;
+            }
+            appendToLoopsOutput(result);
+        }
+
+        function runFor() {
+            let result = 'For loop demo:\n';
+            for (let i = 1; i <= 5; i++) {
+                result += `  for i = ${i}\n`;
+            }
+            appendToLoopsOutput(result);
+        }
+
+        function runForIn() {
+            const person = { name: "Harry", age: 25, city: "Ahmedabad" };
+            let result = 'For...in (object) demo:\n';
+            for (let key in person) {
+                result += `  ${key}: ${person[key]}\n`;
+            }
+            appendToLoopsOutput(result);
+        }
+
+        function runForOf() {
+            const animals = ["Cat", "Dog", "Lion", "Tiger"];
+            let result = 'For...of (array) demo:\n';
+            for (let animal of animals) {
+                result += `  ${animal}\n`;
+            }
+            appendToLoopsOutput(result);
+        }
+    </script>
 </body>
 
 </html>
