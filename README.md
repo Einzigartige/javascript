@@ -1,4 +1,4 @@
-# JavaScript Zero to Hero Course – Master Modern JavaScript with Projects [![Watch Full JavaScript Course](https://img.shields.io/badge/Watch%20Course%20Playlist-FF0000?logo=youtube&logoColor=white&style=for-the-badge)](https://www.youtube.com/playlist?list=PLWDjMj553_AXCWeeflKyKb0zx-RAa6h-R)
+# JavaScript Zero to Hero Course - Master Modern JavaScript with Projects [![Watch Full JavaScript Course](https://img.shields.io/badge/Watch%20Course%20Playlist-FF0000?logo=youtube&logoColor=white&style=for-the-badge)](https://www.youtube.com/playlist?list=PLWDjMj553_AXCWeeflKyKb0zx-RAa6h-R)
 
 Become a JavaScript expert with this **Zero to Hero Course**, designed to take you from beginner to advanced developer. Learn every core concept of JavaScript through **real examples** and **practical projects**.
 
