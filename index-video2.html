@@ -51,11 +51,82 @@
         cursor: pointer;
         margin-top: 10px;
     }
+
+    /* SOCIAL LINKS STYLES */
+    .social-section {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .social-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .social-icons a {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #000;
+        transition: 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        transform: scale(1.1);
+        color: #0078ff;
+    }
+
+    .social-icons img {
+        width: 48px;
+        height: 48px;
+    }
+
 </style>
 </head>
 <body>
 
 <h1>JavaScript Events – Complete Demo</h1>
+
+<!-- ⭐ SOCIAL MEDIA LINKS -->
+<div class="card social-section">
+    <div class="social-title">Follow Us on Social Media</div>
+
+    <div class="social-icons">
+        <a href="https://twitter.com/einzigartigetec" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="Twitter">
+            Twitter
+        </a>
+
+        <a href="https://www.facebook.com/einzigartige" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook">
+            Facebook
+        </a>
+
+        <a href="https://www.linkedin.com/company/einzigartige/" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
+            LinkedIn
+        </a>
+
+        <a href="https://www.youtube.com/@einzigartige_/" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube">
+            YouTube
+        </a>
+
+        <a href="http://einzigartige.in/" target="_blank">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/internetarchive.svg" alt="Website">
+            Website
+        </a>
+    </div>
+</div>
 
 <!-- YOUR ORIGINAL BUTTON EVENT -->
 <div class="card">
@@ -110,12 +181,11 @@
     <p id="windowEvents"></p>
 </div>
 
-<!-- Add scroll area -->
 <div style="height:800px;"></div>
 
 <script>
 /* ================================
-   YOUR ORIGINAL FUNCTION
+   ORIGINAL FUNCTION
 ================================ */
 function myfunction() {
     var d = document.getElementById("mydiv");
@@ -123,9 +193,7 @@ function myfunction() {
     d.style.color = "red";
 }
 
-/* ================================
-   CLICK EVENTS
-================================ */
+/* CLICK EVENTS */
 document.getElementById("clickBtn").addEventListener("click", () => {
     document.getElementById("clickText").innerHTML = "Single Click detected!";
 });
@@ -134,9 +202,7 @@ document.getElementById("dblClickBtn").addEventListener("dblclick", () => {
     document.getElementById("clickText").innerHTML = "Double Click detected!";
 });
 
-/* ================================
-   MOUSE EVENTS
-================================ */
+/* MOUSE EVENTS */
 const mouseBox = document.getElementById("mouseBox");
 const mouseInfo = document.getElementById("mouseInfo");
 
@@ -158,9 +224,7 @@ mouseBox.addEventListener("mouseup", () => {
     mouseInfo.innerHTML = "Mouse Up";
 });
 
-/* ================================
-   KEYBOARD EVENTS
-================================ */
+/* KEYBOARD EVENTS */
 document.getElementById("keyInput").addEventListener("keydown", function() {
     document.getElementById("keyOutput").innerHTML = "Key Down: " + this.value;
 });
@@ -173,9 +237,7 @@ document.getElementById("keyInput").addEventListener("input", function() {
     document.getElementById("keyOutput").innerHTML = "Input Event: " + this.value;
 });
 
-/* ================================
-   FORM EVENTS
-================================ */
+/* FORM EVENTS */
 document.getElementById("myForm").addEventListener("submit", function(e) {
     e.preventDefault();
     document.getElementById("formMsg").innerHTML = "Form submitted!";
@@ -197,9 +259,7 @@ document.getElementById("selectMenu").addEventListener("change", function() {
     document.getElementById("formMsg").innerHTML = "Selected: " + this.value;
 });
 
-/* ================================
-   WINDOW EVENTS
-================================ */
+/* WINDOW EVENTS */
 window.addEventListener("load", () => {
     document.getElementById("windowEvents").innerHTML += "Page Loaded<br>";
 });
