@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Learn JavaScript Events</title>
+</head>
+<body>
+
+<h1>JavaScript Events – Complete Examples</h1>
+
+<!-- Your Original Example -->
+<h2>Click Event (Your Code)</h2>
+<button type="button" onclick="myfunction()">My Button</button>
+<div id="mydiv">Hello World!</div>
+
+<script>
+function myfunction() {
+    var d = document.getElementById("mydiv");
+    d.innerHTML = "The button was clicked!";
+    d.style.color = "red";
+}
+</script>
+
+<hr>
+
+<!-- CLICK EVENTS -->
+<h2>More Click Events</h2>
+<button id="clickBtn">Single Click</button>
+<button id="dblClickBtn">Double Click</button>
+<p id="clickText"></p>
+
+<!-- MOUSE EVENTS -->
+<h2>Mouse Events</h2>
+<div id="mouseBox" style="width:200px; height:80px; background:#eee; padding:20px;">
+    Hover or Click Me
+</div>
+<p id="mouseInfo"></p>
+
+<!-- KEYBOARD EVENTS -->
+<h2>Keyboard Events</h2>
+<input type="text" id="keyInput" placeholder="Type something..." />
+<p id="keyOutput"></p>
+
+<!-- FORM EVENTS -->
+<h2>Form Events</h2>
+<form id="myForm">
+    <input type="text" id="email" placeholder="Enter Email" required><br><br>
+
+    <input type="text" id="focusInput" placeholder="Focus/Blur Example"><br><br>
+
+    <select id="selectMenu">
+        <option value="">Choose Option</option>
+        <option value="Apple">Apple</option>
+        <option value="Banana">Banana</option>
+    </select><br><br>
+
+    <button type="submit">Submit Form</button>
+</form>
+<p id="formMsg"></p>
+
+<!-- WINDOW EVENTS -->
+<h2>Window Events</h2>
+<p id="windowEvents"></p>
+
+<script>
+// ----------------------------
+// CLICK EVENTS
+// ----------------------------
+document.getElementById("clickBtn").addEventListener("click", function() {
+    document.getElementById("clickText").innerHTML = "Single click detected!";
+});
+
+document.getElementById("dblClickBtn").addEventListener("dblclick", function() {
+    document.getElementById("clickText").innerHTML = "Double click detected!";
+});
+
+// ----------------------------
+// MOUSE EVENTS
+// ----------------------------
+const box = document.getElementById("mouseBox");
+const info = document.getElementById("mouseInfo");
+
+box.addEventListener("mouseover", () => {
+    info.innerHTML = "Mouse Over";
+    box.style.background = "lightyellow";
+});
+
+box.addEventListener("mouseout", () => {
+    info.innerHTML = "Mouse Out";
+    box.style.background = "#eee";
+});
+
+box.addEventListener("mousedown", () => {
+    info.innerHTML = "Mouse Down";
+});
+
+box.addEventListener("mouseup", () => {
+    info.innerHTML = "Mouse Up";
+});
+
+// ----------------------------
+// KEYBOARD EVENTS
+// ----------------------------
+document.getElementById("keyInput").addEventListener("keydown", function() {
+    document.getElementById("keyOutput").innerHTML = "Key Down: " + this.value;
+});
+
+document.getElementById("keyInput").addEventListener("keyup", function() {
+    document.getElementById("keyOutput").innerHTML = "Key Up: " + this.value;
+});
+
+document.getElementById("keyInput").addEventListener("input", function() {
+    document.getElementById("keyOutput").innerHTML = "Input Event: " + this.value;
+});
+
+// ----------------------------
+// FORM EVENTS
+// ----------------------------
+document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("formMsg").innerHTML = "Form submitted successfully!";
+});
+
+document.getElementById("email").addEventListener("change", function() {
+    document.getElementById("formMsg").innerHTML = "Email field changed!";
+});
+
+document.getElementById("focusInput").addEventListener("focus", function() {
+    this.style.background = "lightblue";
+});
+
+document.getElementById("focusInput").addEventListener("blur", function() {
+    this.style.background = "white";
+});
+
+document.getElementById("selectMenu").addEventListener("change", function() {
+    document.getElementById("formMsg").innerHTML = "You selected: " + this.value;
+});
+
+// ----------------------------
+// WINDOW EVENTS
+// ----------------------------
+window.addEventListener("load", function() {
+    document.getElementById("windowEvents").innerHTML += "Page Loaded<br>";
+});
+
+window.addEventListener("resize", function() {
+    document.getElementById("windowEvents").innerHTML += "Window Resized<br>";
+});
+
+window.addEventListener("scroll", function() {
+    document.getElementById("windowEvents").innerHTML += "Page Scrolled<br>";
+});
+</script>
+
+<!-- Add scroll space -->
+<div style="height:1000px;"></div>
+
+</body>
+</html>
